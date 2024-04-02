@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\PayPalController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ReplyController;
 use Illuminate\Support\Facades\Route;
@@ -38,3 +39,8 @@ Route::group(['middleware' => 'auth'], function() {
         Route::post('/{comment}', [ReplyController::class, 'store'])->name('store');
     });
 });
+
+Route::get('paypal', [PayPalController::class, 'index'])->name('paypal');
+Route::get('paypal/payment', [PayPalController::class, 'payment'])->name('paypal.payment');
+Route::get('paypal/payment/success', [PayPalController::class, 'paymentSuccess'])->name('paypal.payment.success');
+Route::get('paypal/payment/cancel', [PayPalController::class, 'paymentCancel'])->name('paypal.payment/cancel');
